@@ -1,4 +1,4 @@
-theme: jekyll-theme-dinky
+# theme: jekyll-theme-dinky
 
 # Welcome to Beautiful Jekyll!
 # This config file is meant for settings that affect your entire website. When you first
@@ -226,9 +226,9 @@ date_format: "%B %-d, %Y"
 #   - screenshot.png
 #   - docs/
 
-# plugins:
-#   - jekyll-paginate
-#   - jekyll-sitemap
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
