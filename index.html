@@ -22,6 +22,9 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 2rem;
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             font-size: 2.5rem;
@@ -37,6 +40,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
         .btn {
             display: flex;
@@ -51,8 +55,32 @@
             margin: 10px;
             font-size: 24px;
             transition: all 0.3s ease;
+            position: relative;
         }
         .btn:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        .social-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .social-btn:hover {
             transform: scale(1.1);
             background-color: rgba(255, 255, 255, 0.2);
         }
@@ -84,6 +112,22 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .bubble {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .btn:hover .bubble {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -94,6 +138,14 @@
             <a href="https://sinc.unl.edu.ar/staff/franco-matzkin/" class="btn" title="Professional Website"><i class="fas fa-globe"></i></a>
             <a href="#" class="btn" title="CV" onclick="openPDFViewer()"><i class="fas fa-file-alt"></i></a>
             <a href="mailto:fmatzkin@sinc.unl.edu.ar" class="btn" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" class="btn" title="Projects">
+                <i class="fas fa-cogs"></i>
+                <span class="bubble">Coming Soon</span>
+            </a>
+        </div>
+        <div class="social-buttons">
+            <a href="https://twitter.com/Franco Matzkin" class="social-btn" title="Twitter"><img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png" alt="Twitter Logo" style="width: 20px; height: 20px;"></a>
+            <a href="https://www.linkedin.com/in/matzkin" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
     </div>
     <div class="pdf-viewer" id="pdfViewer">
