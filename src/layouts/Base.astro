@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title: string;
+  description?: string;
+  showNav?: boolean;
+  showFooter?: boolean;
+  showHomeInNav?: boolean;
+  hasWallpaper?: boolean;
+}
+
+const {
+  title,
+  description = 'Franco Matzkin - Computer Engineer, PhD student, ML Specialist',
+  showNav = true,
+  showFooter = true,
+  showHomeInNav = false,
+  hasWallpaper = false
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Check if collections have content
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+const projects = await getCollection('projects');
+const hasBlog = blogPosts.length > 0;
+const hasProjects = projects.length > 0;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="Franco Matzkin" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+
+
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Franco Matzkin's Blog" href="/rss.xml" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <title>{title}</title>
+
+  <!-- Theme initialization (prevent flash) -->
+  <script is:inline>
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light');
+    }
+  </script>
+</head>
+<body class:list={[{ 'has-wallpaper': hasWallpaper }]}>
+  {showNav && <Nav showHome={showHomeInNav} showBlog={hasBlog} showProjects={hasProjects} />}
+
+  <main>
+    <slot />
+  </main>
+
+  {showFooter && <Footer />}
+</body>
+</html>
+
+<style>
+  body.has-wallpaper {
+    background: url('/wallpaper.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  main {
+    min-height: calc(100vh - 200px);
+    padding-top: 60px;
+  }
+</style>

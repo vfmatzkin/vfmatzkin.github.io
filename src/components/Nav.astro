@@ -1,0 +1,116 @@
+---
+interface Props {
+  showHome?: boolean;
+  showBlog?: boolean;
+  showProjects?: boolean;
+}
+
+const { showHome = false, showBlog = true, showProjects = true } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav">
+  <div class="nav-links">
+    {showHome && (
+      <a href="/" class:list={[{ active: currentPath === '/' }]}>Home</a>
+    )}
+    {showBlog && (
+      <a href="/blog" class:list={[{ active: currentPath.startsWith('/blog') }]}>Blog</a>
+    )}
+    {showProjects && (
+      <a href="/projects" class:list={[{ active: currentPath.startsWith('/projects') }]}>Projects</a>
+    )}
+  </div>
+  <button id="theme-toggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+    <i class="fas fa-sun sun-icon"></i>
+    <i class="fas fa-moon moon-icon"></i>
+  </button>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--text-primary);
+  }
+
+  .theme-toggle {
+    background: var(--bg-button);
+    border: none;
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background: var(--bg-button-hover);
+    transform: scale(1.1);
+  }
+
+  .sun-icon {
+    display: none;
+  }
+
+  .moon-icon {
+    display: block;
+  }
+
+  :global(.light) .sun-icon {
+    display: block;
+  }
+
+  :global(.light) .moon-icon {
+    display: none;
+  }
+</style>
+
+<script>
+  function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      root.classList.add('light');
+    }
+
+    toggle?.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const isLight = root.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  }
+
+  initTheme();
+  document.addEventListener('astro:after-swap', initTheme);
+</script>

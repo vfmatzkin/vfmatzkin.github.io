@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+
+const projects = await getCollection('projects');
+const hasRecentPosts = recentPosts.length > 0;
+const hasProjects = projects.length > 0;
+---
+
+<Base title="Franco Matzkin - Personal Page" hasWallpaper={true} showFooter={false}>
+  <Hero
+    name="Franco Matzkin"
+    title="Computer Engineer | PhD student"
+    subtitle="ML Specialist"
+    showProjects={hasProjects}
+  />
+
+  {hasRecentPosts && (
+    <section class="recent-posts">
+      <div class="recent-posts-container">
+        <h3>Latest Posts</h3>
+        <ul>
+          {recentPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}`}>
+                <span class="post-title">{post.data.title}</span>
+                <span class="post-date">
+                  {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="/blog" class="view-all">View all posts →</a>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .recent-posts {
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem 2rem;
+  }
+
+  .recent-posts-container {
+    background-color: var(--bg-card);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  li a:hover {
+    color: #60a5fa;
+  }
+
+  .post-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 1rem;
+  }
+
+  .post-date {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .view-all {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .view-all:hover {
+    color: var(--text-primary);
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/matzkin" title="LinkedIn" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/vfmatzkin" title="GitHub" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:fran@tzk.ar" title="Email" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <p class="copyright">&copy; {currentYear} Franco Matzkin</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 2rem;
+    text-align: center;
+    background: transparent;
+  }
+
+  .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-button);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-links a:hover {
+    background: var(--bg-button-hover);
+    transform: scale(1.1);
+  }
+
+  .copyright {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+</style>
