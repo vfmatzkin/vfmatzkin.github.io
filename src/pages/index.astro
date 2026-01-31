@@ -7,17 +7,13 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 2);
 
-const projects = await getCollection('projects');
 const hasRecentPosts = recentPosts.length > 0;
-const hasProjects = projects.length > 0;
 ---
 
 <Base title="Franco Matzkin - Personal Page" hasWallpaper={true} showFooter={false}>
   <Hero
     name="Franco Matzkin"
-    title="Computer Engineer | PhD student"
-    subtitle="ML Specialist"
-    showProjects={hasProjects}
+    title="Software Engineer"
   />
 
   {hasRecentPosts && (

@@ -21,7 +21,7 @@ import '../styles/global.css';
 <body>
   <div class="cv-actions no-print">
     <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
-    <button onclick="window.print()" class="print-btn"><i class="fas fa-download"></i> Download PDF</button>
+    <button id="print-btn" class="print-btn"><i class="fas fa-download"></i> Download PDF</button>
   </div>
 
   <article class="cv">
@@ -30,9 +30,9 @@ import '../styles/global.css';
       <div class="contact-info">
         <a href="mailto:fran@tzk.ar">fran@tzk.ar</a>
         <span class="separator">|</span>
-        <a href="https://linkedin.com/in/matzkin" target="_blank">linkedin.com/in/matzkin</a>
+        <a href="https://linkedin.com/in/matzkin" target="_blank" rel="noopener noreferrer">linkedin.com/in/matzkin</a>
         <span class="separator">|</span>
-        <a href="https://github.com/vfmatzkin" target="_blank">github.com/vfmatzkin</a>
+        <a href="https://github.com/vfmatzkin" target="_blank" rel="noopener noreferrer">github.com/vfmatzkin</a>
       </div>
     </header>
 
@@ -135,7 +135,7 @@ import '../styles/global.css';
         <p class="project-tech">Next.js, GCP, Docker</p>
         <ul>
           <li>Designed user system with Google OAuth, CI/CD using GitHub Actions, deployed on Vercel + GCP.</li>
-          <li><a href="https://github.com/vfmatzkin/sinc-website" target="_blank">Source Code</a></li>
+          <li><a href="https://github.com/vfmatzkin/sinc-website" target="_blank" rel="noopener noreferrer">Source Code</a></li>
         </ul>
       </div>
 
@@ -144,7 +144,7 @@ import '../styles/global.css';
         <p class="project-tech">Python toolkit for preprocessing and segmentation (PyTorch + FSL)</p>
         <ul>
           <li>Automates ML lifecycle in medical imaging pipelines, and facilitates the transformation of raw research data into analysis-ready formats.</li>
-          <li><a href="https://gitlab.com/matzkin/headctools" target="_blank">Source Code</a></li>
+          <li><a href="https://gitlab.com/matzkin/headctools" target="_blank" rel="noopener noreferrer">Source Code</a></li>
         </ul>
       </div>
     </section>
@@ -472,3 +472,7 @@ import '../styles/global.css';
     }
   }
 </style>
+
+<script>
+  document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+</script>
