@@ -1,0 +1,478 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Franco Matzkin - Machine Learning Engineer CV" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <title>CV | Franco Matzkin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script is:inline>
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light');
+    }
+  </script>
+</head>
+<body>
+  <div class="cv-actions no-print">
+    <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    <button id="print-btn" class="print-btn"><i class="fas fa-download"></i> Download PDF</button>
+  </div>
+
+  <article class="cv">
+    <header class="cv-header">
+      <h1>Franco Matzkin</h1>
+      <div class="contact-info">
+        <a href="mailto:fran@tzk.ar">fran@tzk.ar</a>
+        <span class="separator">|</span>
+        <a href="https://linkedin.com/in/matzkin" target="_blank" rel="noopener noreferrer">linkedin.com/in/matzkin</a>
+        <span class="separator">|</span>
+        <a href="https://github.com/vfmatzkin" target="_blank" rel="noopener noreferrer">github.com/vfmatzkin</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p>
+        Machine Learning Engineer with 5+ years of experience taking ML systems from concept to production.
+        I specialize in building automated data pipelines, designing models that handle real-world data heterogeneity,
+        and implementing reliability mechanisms that detect failures before they impact users. My background spans
+        industrial IoT, medical imaging, and time-series forecasting, with peer-reviewed publications on
+        production-relevant challenges like data drift and model calibration.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item">
+          <strong>Languages:</strong> Python, SQL, Bash, JavaScript/TypeScript, C/C++
+        </div>
+        <div class="skill-item">
+          <strong>ML & Data:</strong> PyTorch, TensorFlow, scikit-learn, Pandas, NumPy, OpenCV, Hugging Face
+        </div>
+        <div class="skill-item">
+          <strong>MLOps:</strong> Docker, Airflow, MLflow, CI/CD (GitHub/GitLab), Linux
+        </div>
+        <div class="skill-item">
+          <strong>Backend & Data:</strong> FastAPI, PostgreSQL, SQL Server, REST APIs
+        </div>
+        <div class="skill-item full-width">
+          <strong>Core Competencies:</strong> ML Pipeline Architecture, Data Quality Frameworks, Model Calibration & Drift Detection, Embedding-based Search, ETL Design, System Design, Stakeholder Communication
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="job">
+        <div class="job-header">
+          <h3>Machine Learning Engineer</h3>
+          <span class="job-meta">Azumo LLC &bull; Nov 2024 – Present</span>
+        </div>
+        <ul>
+          <li>Designed and architected a multi-stage prioritization engine for resource allocation across a large-scale industrial pipeline network, modeling complex contractual obligations, dynamic rate structures, and physical system constraints.</li>
+          <li>Led requirements discovery and system design for a next-generation optimization model, building interactive prototypes (Streamlit, HTML) to validate a multi-level capacity estimation strategy with client stakeholders, de-risking the project and securing buy-in before full-scale implementation.</li>
+          <li>Built end-to-end ML pipelines for dynamic capacity estimation and volume forecasting (scikit-learn, PyTorch), integrating real-time sensor data with automated equipment status detection to predict operational constraints. Served models via FastAPI with PostgreSQL.</li>
+          <li>Developed ETL pipelines (Airflow) for high-volume SCADA sensor and geospatial data, implementing data integrity validation and quality monitoring frameworks to maintain model reliability at scale.</li>
+          <li>Built a graph-based self-service tool for data configuration, enabling non-technical users to manage sensor mappings across a large-scale network without engineering support.</li>
+          <li>Led technical discussions with client engineering and operations teams to analyze data feasibility, validate model assumptions, and define feature scope—translating complex business requirements into actionable technical specifications.</li>
+          <li>Established documentation practices for client interactions and technical decisions, enabling the team to retrieve context without repeated stakeholder conversations.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h3>ML Engineer and PhD Candidate</h3>
+          <span class="job-meta">sinc(i), Argentina &bull; 2019 – 2025</span>
+        </div>
+        <ul>
+          <li>Designed self-supervised training pipelines that generate synthetic labeled data automatically, eliminating manual annotation bottlenecks and reducing data acquisition costs while matching supervised performance.</li>
+          <li>Built data harmonization pipelines to integrate heterogeneous medical imaging data from 4+ acquisition sources, standardizing formats, resolving schema inconsistencies, and extracting structured metadata for downstream ML workflows.</li>
+          <li>Developed model calibration techniques to detect out-of-distribution inputs and predict failures before deployment, enabling confidence-aware systems that flag unreliable predictions rather than failing silently.</li>
+          <li>Achieved top-tier benchmark results in an international ML competition (MICCAI 2020), with methods demonstrating superior robustness on edge cases compared to baseline approaches.</li>
+          <li>Automated end-to-end ML workflows from raw data ingestion through preprocessing to inference, reducing manual intervention and enabling reproducible experimentation.</li>
+          <li>Published peer-reviewed research on model reliability under data drift, contributing methods applicable to production monitoring systems.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h3>Research Intern – ELAP Fellowship</h3>
+          <span class="job-meta">LIVIA Lab, ÉTS Montreal &bull; Jan 2023 – Jul 2023</span>
+        </div>
+        <ul>
+          <li>Benchmarked multiple uncertainty estimation approaches to improve model reliability when deployed on data from unseen sources—directly applicable to production drift detection.</li>
+          <li>Demonstrated that confidence scores can serve as automated quality indicators, enabling monitoring systems to flag potential failures without ground-truth labels.</li>
+          <li>Established reproducible experiment tracking workflows (PyTorch Lightning, MLflow) for systematic model comparison and hyperparameter optimization.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <h3>Computer Vision Developer</h3>
+          <span class="job-meta">Auravant, Argentina &bull; Jan 2019 – Feb 2019</span>
+        </div>
+        <ul>
+          <li>Developed a proof-of-concept for kernel counting in maize images using a 2D CNN for image segmentation.</li>
+          <li>Implemented image preprocessing techniques to extract regions of interest from photos for robust analysis.</li>
+          <li>Designed and executed segmentation algorithms for individual kernels and developed methods for approximate kernel counting.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <div class="project">
+        <h3>sinc(i) Website <span class="project-type">– Full Stack Developer</span></h3>
+        <p class="project-tech">Next.js, GCP, Docker</p>
+        <ul>
+          <li>Designed user system with Google OAuth, CI/CD using GitHub Actions, deployed on Vercel + GCP.</li>
+          <li><a href="https://github.com/vfmatzkin/sinc-website" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+        </ul>
+      </div>
+
+      <div class="project">
+        <h3>headCTools <span class="project-type">– CLI for Medical Imaging</span></h3>
+        <p class="project-tech">Python toolkit for preprocessing and segmentation (PyTorch + FSL)</p>
+        <ul>
+          <li>Automates ML lifecycle in medical imaging pipelines, and facilitates the transformation of raw research data into analysis-ready formats.</li>
+          <li><a href="https://gitlab.com/matzkin/headctools" target="_blank" rel="noopener noreferrer">Source Code</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+
+      <div class="education-item">
+        <h3>Ph.D. in Engineering <span class="edu-year">(Expected 2025)</span></h3>
+        <p class="institution">Universidad Nacional del Litoral (UNL-FICH), Argentina</p>
+        <p class="thesis"><em>Thesis:</em> Reconstrucción craneal y segmentación robusta de imágenes médicas mediante aprendizaje profundo</p>
+        <p class="coursework"><em>Relevant Coursework:</em> Computer Vision, ML, Scientific Software Design, Applied Stats</p>
+      </div>
+
+      <div class="education-item">
+        <h3>Computer Engineer <span class="edu-year">(2013 – 2019)</span></h3>
+        <p class="institution">Universidad Nacional del Litoral (UNL-FICH), Argentina</p>
+        <p class="coursework"><em>Relevant Coursework:</em> Computational Intelligence, Image Processing</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <p>
+        <strong>Deep Learning Specialization</strong> — Coursera (deeplearning.ai)<br />
+        CNNs, RNNs, Optimization, and practical applications using TensorFlow.
+      </p>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <div class="languages">
+        <span><strong>Spanish:</strong> Native</span>
+        <span><strong>English:</strong> Advanced (B2/C1)</span>
+        <span><strong>Italian:</strong> Advanced</span>
+        <span><strong>French:</strong> Basic</span>
+      </div>
+    </section>
+  </article>
+</body>
+</html>
+
+<style>
+  :root {
+    --cv-bg: #ffffff;
+    --cv-text: #1a1a1a;
+    --cv-text-secondary: #555555;
+    --cv-border: #e0e0e0;
+    --cv-link: #0066cc;
+  }
+
+  :root.light {
+    --cv-bg: #ffffff;
+    --cv-text: #1a1a1a;
+  }
+
+  body {
+    background: var(--bg-dark);
+    padding: 1rem;
+  }
+
+  .cv-actions {
+    max-width: 850px;
+    margin: 0 auto 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .back-btn, .print-btn {
+    background: var(--bg-button);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .back-btn:hover, .print-btn:hover {
+    background: var(--bg-button-hover);
+    transform: scale(1.02);
+  }
+
+  .cv {
+    max-width: 850px;
+    margin: 0 auto;
+    background: var(--cv-bg);
+    color: var(--cv-text);
+    padding: 2.5rem;
+    border-radius: 8px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  .cv-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .cv-header h1 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    color: var(--cv-text);
+    font-weight: normal;
+  }
+
+  .contact-info {
+    font-size: 0.95rem;
+    color: var(--cv-text-secondary);
+  }
+
+  .contact-info a {
+    color: var(--cv-link);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+    color: var(--cv-text-secondary);
+  }
+
+  section {
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.25rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--cv-border);
+    color: var(--cv-text);
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+    color: var(--cv-text);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .skill-item {
+    font-size: 0.95rem;
+  }
+
+  .skill-item.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .job, .project, .education-item {
+    margin-top: 0.75rem;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .job-meta {
+    font-style: italic;
+    color: var(--cv-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  ul {
+    margin: 0.35rem 0 0 1.25rem;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.2rem;
+  }
+
+  .project-type {
+    font-weight: normal;
+    color: var(--cv-text-secondary);
+  }
+
+  .project-tech {
+    font-style: italic;
+    color: var(--cv-text-secondary);
+    margin: 0.15rem 0;
+    font-size: 0.95rem;
+  }
+
+  .edu-year {
+    font-weight: normal;
+    color: var(--cv-text-secondary);
+  }
+
+  .institution {
+    margin: 0.15rem 0;
+    color: var(--cv-text-secondary);
+  }
+
+  .thesis, .coursework {
+    margin: 0.15rem 0;
+    font-size: 0.95rem;
+  }
+
+  .languages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  a {
+    color: var(--cv-link);
+  }
+
+  /* Print styles */
+  @media print {
+    @page {
+      margin: 0.4in 0.5in;
+      size: A4;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    html, body {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 9.5pt !important;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    .cv {
+      max-width: none !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: white !important;
+    }
+
+    .cv-header {
+      margin-bottom: 1rem;
+    }
+
+    .cv-header h1 {
+      font-size: 1.6rem;
+    }
+
+    section {
+      margin-bottom: 0.8rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .job, .project, .education-item {
+      margin-top: 0.5rem;
+    }
+
+    .job-header h3 {
+      page-break-after: avoid;
+    }
+
+    ul {
+      margin-top: 0.2rem;
+    }
+
+    li {
+      margin-bottom: 0.1rem;
+    }
+
+    a {
+      color: #1a1a1a !important;
+      text-decoration: none !important;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .cv {
+      padding: 1.5rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .job-header {
+      flex-direction: column;
+    }
+
+    .languages {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+</script>

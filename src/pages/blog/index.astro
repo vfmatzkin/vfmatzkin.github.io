@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Base title="Blog | Franco Matzkin" description="Articles about machine learning, research, and software engineering." showHomeInNav={true}>
+  <div class="blog-container">
+    <header class="blog-header">
+      <h1>Blog</h1>
+      <p>Thoughts on machine learning, research, and software engineering.</p>
+    </header>
+
+    <ul class="posts-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`} class="post-link">
+            <article class="post-card">
+              <h2>{post.data.title}</h2>
+              <p class="description">{post.data.description}</p>
+              <div class="meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                {post.data.tags.length > 0 && (
+                  <div class="tags">
+                    {post.data.tags.map((tag) => (
+                      <span class="tag">#{tag}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {posts.length === 0 && (
+      <p class="no-posts">No posts yet. Check back soon!</p>
+    )}
+  </div>
+</Base>
+
+<style>
+  .blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blog-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .blog-header p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .posts-list li {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .post-card {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-2px);
+    background-color: var(--bg-button-hover);
+  }
+
+  .post-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--bg-button);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .no-posts {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+  }
+</style>

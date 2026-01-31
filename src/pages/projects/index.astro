@@ -1,0 +1,165 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) {
+      return a.data.featured ? -1 : 1;
+    }
+    return a.data.order - b.data.order;
+  });
+---
+
+<Base title="Projects | Franco Matzkin" description="Machine learning and software projects by Franco Matzkin." showHomeInNav={true}>
+  <div class="projects-container">
+    <header class="projects-header">
+      <h1>Projects</h1>
+      <p>A collection of my work in machine learning and software engineering.</p>
+    </header>
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <article class="project-card" class:list={[{ featured: project.data.featured }]}>
+          {project.data.featured && <span class="featured-badge">Featured</span>}
+          <h2>{project.data.title}</h2>
+          <p class="description">{project.data.description}</p>
+
+          {project.data.tags.length > 0 && (
+            <div class="tags">
+              {project.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+
+          <div class="links">
+            {project.data.github && (
+              <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="link">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            )}
+            {project.data.demo && (
+              <a href={project.data.demo} target="_blank" rel="noopener noreferrer" class="link">
+                <i class="fas fa-external-link-alt"></i> Demo
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {projects.length === 0 && (
+      <p class="no-projects">No projects yet. Check back soon!</p>
+    )}
+  </div>
+</Base>
+
+<style>
+  .projects-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .projects-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .projects-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .projects-header p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 10px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .project-card.featured {
+    border: 1px solid rgba(96, 165, 250, 0.3);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(96, 165, 250, 0.2);
+    color: #60a5fa;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  .project-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+    padding-right: 70px;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    background: var(--bg-button);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.3s ease;
+  }
+
+  .link:hover {
+    color: var(--text-primary);
+  }
+
+  .no-projects {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+  }
+</style>

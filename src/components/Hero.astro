@@ -1,0 +1,358 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { name, title, subtitle } = Astro.props;
+---
+
+<div class="hero-container">
+  <div class="hero-card">
+    <h1 class="name-container">
+      <span class="name-part name-left">Franco Ma</span><span class="domain-intro">tzk<span class="ar">.ar</span></span><span class="name-part name-right">in</span>
+    </h1>
+    <h2 class="title">{title}{subtitle && <><br/>{subtitle}</>}</h2>
+
+    <div class="buttons">
+      <a href="/cv" class="btn-expand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>CV</span>
+      </a>
+      <div class="email-wrapper">
+        <button type="button" class="btn-expand" id="email-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span>Email</span>
+        </button>
+        <div class="email-tooltip" id="email-tooltip">
+          <span class="email-address">fran@tzk.ar</span>
+          <button type="button" class="copy-btn" id="copy-btn">
+            <span id="copy-text">Copy</span>
+          </button>
+        </div>
+      </div>
+      <a href="https://www.linkedin.com/in/matzkin" class="btn-expand" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/vfmatzkin" class="btn-expand" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+
+    <div class="more-links">
+      <span class="more-trigger">more...</span>
+      <div class="more-content">
+        <a href="https://scholar.google.com/citations?user=ddZ2i5QAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+        <span class="separator">&middot;</span>
+        <a href="https://sinc.unl.edu.ar/staff/franco-matzkin/" target="_blank" rel="noopener noreferrer">sinc(i)</a>
+        <span class="separator">&middot;</span>
+        <a href="https://azumo.com/author/franco-matzkin" target="_blank" rel="noopener noreferrer">Azumo</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 2rem;
+  }
+
+  .hero-card {
+    text-align: center;
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  :global(.light) .hero-card {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0 0 0.1rem 0;
+    font-weight: normal;
+  }
+
+  .name-container {
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .name-part {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: max-width 0.6s ease;
+  }
+
+  .domain-intro {
+    background: #131212;
+    padding: 0 0.3em;
+    border-radius: 4px;
+    transition: background 0.6s ease, padding 0.6s ease;
+  }
+
+  :global(.light) .domain-intro {
+    background: #999;
+  }
+
+  .ar {
+    display: inline-block;
+    max-width: 3ch;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: max-width 0.6s ease;
+  }
+
+  .name-container.revealed .name-left {
+    max-width: 10ch;
+  }
+
+  .name-container.revealed .name-right {
+    max-width: 3ch;
+  }
+
+  .name-container.revealed .domain-intro {
+    background: transparent;
+    padding: 0;
+  }
+
+  .name-container.revealed .ar {
+    max-width: 0;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-secondary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .name-container.revealed + h2 {
+    opacity: 1;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .btn-expand {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.6rem;
+    border-radius: 9999px;
+    background-color: var(--bg-button);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .btn-expand svg {
+    flex-shrink: 0;
+  }
+
+  .btn-expand span {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width 0.3s ease, margin 0.3s ease;
+  }
+
+  .btn-expand:hover {
+    background-color: var(--bg-button-hover);
+    padding-right: 1rem;
+  }
+
+  .btn-expand:hover span {
+    max-width: 100px;
+    margin-left: 0.5rem;
+  }
+
+  .more-links {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    position: relative;
+    min-height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .more-trigger,
+  .more-content {
+    transition: opacity 0.3s ease;
+  }
+
+  .more-trigger {
+    color: var(--text-secondary);
+    opacity: 0.4;
+    cursor: pointer;
+    position: absolute;
+  }
+
+  .more-content {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .more-links:hover .more-trigger {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .more-links:hover .more-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .more-content a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .more-content a:hover {
+    color: var(--text-primary);
+  }
+
+  .more-links .separator {
+    margin: 0 0.5rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+  }
+
+  .email-wrapper {
+    position: relative;
+  }
+
+  .email-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 8px;
+    border-radius: 9999px;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    z-index: 100;
+  }
+
+  .email-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 12px;
+  }
+
+  :global(.light) .email-tooltip {
+    background: #333;
+    color: #fff;
+  }
+
+  .email-tooltip.show {
+    display: flex;
+  }
+
+  .email-address {
+    font-size: 0.85rem;
+    user-select: all;
+  }
+
+  .copy-btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+    transition: background 0.2s ease;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+</style>
+
+<script>
+  function initEmailPopup() {
+    const wrapper = document.querySelector('.email-wrapper');
+    const btn = document.getElementById('email-btn');
+    const tooltip = document.getElementById('email-tooltip');
+    const copyBtn = document.getElementById('copy-btn');
+    const copyText = document.getElementById('copy-text');
+    const email = 'fran@tzk.ar';
+
+    btn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tooltip?.classList.toggle('show');
+    });
+
+    wrapper?.addEventListener('mouseleave', () => {
+      tooltip?.classList.remove('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!tooltip?.contains(e.target as Node) && e.target !== btn) {
+        tooltip?.classList.remove('show');
+      }
+    });
+
+    copyBtn?.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(email);
+      if (copyText) {
+        copyText.textContent = 'Copied!';
+        setTimeout(() => copyText.textContent = 'Copy', 2000);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') tooltip?.classList.remove('show');
+    });
+  }
+
+  initEmailPopup();
+  document.addEventListener('astro:after-swap', initEmailPopup);
+
+  function initNameReveal() {
+    const nameContainer = document.querySelector('.name-container');
+    if (nameContainer) {
+      setTimeout(() => {
+        nameContainer.classList.add('revealed');
+      }, 300);
+    }
+  }
+
+  initNameReveal();
+  document.addEventListener('astro:after-swap', initNameReveal);
+</script>
