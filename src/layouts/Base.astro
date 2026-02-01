@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title,
-  description = 'Franco Matzkin - Computer Engineer, PhD student, ML Specialist',
+  description = 'Data in, software out. Occasionally magic. ML engineer by trade, backend dev by necessity.',
   showNav = true,
   showFooter = true,
   showHomeInNav = false,
@@ -44,6 +44,13 @@ const hasProjects = projects.length > 0;
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={new URL('/og.png', Astro.site)} />
 
 
   <link rel="icon" type="image/png" href="/favicon.png" />
