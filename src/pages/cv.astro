@@ -28,7 +28,10 @@ import '../styles/global.css';
     <header class="cv-header">
       <h1>Franco Matzkin</h1>
       <div class="contact-info">
-        <a href="mailto:fran@tzk.ar">fran@tzk.ar</a>
+        <span class="email-wrapper">
+          <button type="button" class="email-link" id="email-btn">fran@tzk.ar</button>
+          <span class="email-tooltip" id="email-tooltip">Click to copy</span>
+        </span>
         <span class="separator">|</span>
         <a href="https://linkedin.com/in/matzkin" target="_blank" rel="noopener noreferrer">linkedin.com/in/matzkin</a>
         <span class="separator">|</span>
@@ -273,6 +276,57 @@ import '../styles/global.css';
     text-decoration: underline;
   }
 
+  .email-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .email-link {
+    background: none;
+    border: none;
+    color: var(--cv-link);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .email-link:hover {
+    text-decoration: underline;
+  }
+
+  .email-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: #fff;
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 6px;
+    border-radius: 9999px;
+    display: none;
+    white-space: nowrap;
+    z-index: 100;
+  }
+
+  .email-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 10px;
+  }
+
+  .email-tooltip.show {
+    display: block;
+  }
+
+  .email-tooltip {
+    font-size: 0.8rem;
+  }
+
   .separator {
     margin: 0 0.5rem;
     color: var(--cv-text-secondary);
@@ -399,8 +453,13 @@ import '../styles/global.css';
       font-size: 9.5pt !important;
     }
 
-    .no-print {
+    .no-print,
+    .email-tooltip {
       display: none !important;
+    }
+
+    .email-link {
+      color: #1a1a1a !important;
     }
 
     .cv {
@@ -475,4 +534,26 @@ import '../styles/global.css';
 
 <script>
   document.getElementById('print-btn')?.addEventListener('click', () => window.print());
+
+  // Email popup
+  const wrapper = document.querySelector('.email-wrapper');
+  const emailBtn = document.getElementById('email-btn');
+  const tooltip = document.getElementById('email-tooltip');
+  const email = 'fran@tzk.ar';
+
+  wrapper?.addEventListener('mouseenter', () => {
+    tooltip?.classList.add('show');
+  });
+
+  wrapper?.addEventListener('mouseleave', () => {
+    tooltip?.classList.remove('show');
+    if (tooltip) tooltip.textContent = 'Click to copy';
+  });
+
+  emailBtn?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(email);
+    if (tooltip) {
+      tooltip.textContent = 'Copied!';
+    }
+  });
 </script>
